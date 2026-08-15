@@ -53,10 +53,10 @@ namespace PoseSlotExtensionMAStable.Editor
             EditorGUILayout.Space(8);
 
             EditorGUILayout.HelpBox(
-                "Save 01-50は現在のBuddyWorksポーズ（PE/Set + PE/Float）だけを上書き保存し、" +
+                "Save 01-50は現在のBUDDYWORKSポーズ（PE/Set + PE/Float）だけを上書き保存し、" +
                 "Load 01-50で復元します。保存値はローカル専用ですが、Load後のポーズ表示は" +
-                "BuddyWorks本来の同期経路を使うため他人にも見えます。ジャンプ等では解除されず、" +
-                "BuddyWorksのResetで解除されます。", MessageType.Info);
+                "BUDDYWORKS本来の同期経路を使うため他人にも見えます。ジャンプ等では解除されず、" +
+                "BUDDYWORKSのResetで解除されます。", MessageType.Info);
 
             EditorGUILayout.Space(8);
             EditorGUILayout.LabelField("対象アバター", EditorStyles.boldLabel);
@@ -78,7 +78,7 @@ namespace PoseSlotExtensionMAStable.Editor
                     else
                     {
                         lastResult = compatible.Length == 0
-                            ? "BuddyWorks Poses Extensionを持つアバターが見つかりません。"
+                            ? "BUDDYWORKS Poses Extensionを持つアバターが見つかりません。"
                             : "候補が複数あります。Hierarchyで対象を選択してください。";
                         lastResultType = MessageType.Warning;
                     }
@@ -90,9 +90,9 @@ namespace PoseSlotExtensionMAStable.Editor
             var hasSupportedBuddy = target != null &&
                                     PoseSlotExtensionInstaller.HasBuddyWorksModularAvatar(target.gameObject);
             DrawStatus("Avatar Descriptor", target != null);
-            DrawStatus("BuddyWorks Poses Extension [MA]", hasSupportedBuddy);
+            DrawStatus("BUDDYWORKS Poses Extension [MA]", hasSupportedBuddy);
             DrawStatus("Modular Avatar", typeof(ModularAvatarMergeAnimator) != null);
-            DrawStatus("BuddyWorks Package原本", AssetDatabase.LoadAssetAtPath<GameObject>(BuddyWorksPrefabPath) != null);
+            DrawStatus("BUDDYWORKS Package原本", AssetDatabase.LoadAssetAtPath<GameObject>(BuddyWorksPrefabPath) != null);
             DrawStatus("生成済みアセット", AssetDatabase.LoadAssetAtPath<GameObject>(GeneratedPrefabPath) != null);
             DrawStatus("対象へ導入済み", PoseSlotExtensionInstaller.IsInstalled(target));
 
@@ -111,7 +111,7 @@ namespace PoseSlotExtensionMAStable.Editor
 
             EditorGUILayout.Space(10);
             EditorGUILayout.HelpBox(
-                "安全性: BuddyWorksのPackage原本は編集しません。必要なAction Controllerとメニューを" +
+                "安全性: BUDDYWORKSのPackage原本は編集しません。必要なAction Controllerとメニューを" +
                 "Generated配下へ複製して加工します。旧PSEパラメータがある場合も、元のExpression " +
                 "Parametersを直接変更せずPrivateParametersへ複製して移行します。", MessageType.None);
 
@@ -134,7 +134,7 @@ namespace PoseSlotExtensionMAStable.Editor
                 if (!PoseSlotBuildValidator.Validate(target))
                     throw new InvalidOperationException("NDMFビルド後検証がFAILでした。アップロードしないでください。");
                 lastResult = "PASS: 50スロットを生成・導入し、NDMFビルド後のメニュー、Animator、" +
-                             "パラメータ、BuddyWorks連携を検証しました。アップロード可能です。";
+                             "パラメータ、BUDDYWORKS連携を検証しました。アップロード可能です。";
                 lastResultType = MessageType.Info;
             });
         }

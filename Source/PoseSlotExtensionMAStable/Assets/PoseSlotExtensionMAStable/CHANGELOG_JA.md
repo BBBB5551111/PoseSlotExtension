@@ -3,7 +3,7 @@
 ## 1.0.0-ma-stable - 2026-08-15
 
 - v1.1.5のMA実装を独立パッケージとして固定
-- BuddyWorks `[MA]` だけを検出・導入・検証し、VRCFury経路を入口から使用しない構造へ分離
+- BUDDYWORKS `[MA]` だけを検出・導入・検証し、VRCFury経路を入口から使用しない構造へ分離
 - 旧統合版の導入オブジェクトを、MA版の導入成功後に安全に置換
 - 独立アセットルート、独立名前空間、独立NDMFプラグインIDを採用
 - 同一アバターへ2回連続で生成・導入・NDMF後検証を行い、両方PASS
@@ -18,17 +18,17 @@
 
 ## 1.1.4 - 2026-08-15
 
-- 配布Packageが意図的に除外する`Generated`を旧導入環境で削除した際、BuddyWorks `[MA]`の旧複製メニュー参照がMissingになりMA版を未検出と誤判定する問題を修正
-- MA Menu Installerの参照だけでなく、BuddyWorks公式Prefabの出自と`BWPosesExtension`本体コンポーネントからMA版を復旧検出
+- 配布Packageが意図的に除外する`Generated`を旧導入環境で削除した際、BUDDYWORKS `[MA]`の旧複製メニュー参照がMissingになりMA版を未検出と誤判定する問題を修正
+- MA Menu Installerの参照だけでなく、BUDDYWORKS公式Prefabの出自と`BWPosesExtension`本体コンポーネントからMA版を復旧検出
 - MAメニュー参照をnullにした一時複製アバターを使う回帰検査をNDMF後検証へ追加
 
 ## 1.1.3 - 2026-08-15
 
-- `Pose Slots`をBuddyWorks Poses Extensionの最上位メニューへ移動
+- `Pose Slots`をBUDDYWORKS Poses Extensionの最上位メニューへ移動
 - 最上位にあった`Dances`を`More`へ移し、既存項目を失わずメニュー上限8以内を維持
-- BuddyWorks Package原本を変更せず、PSEが生成するアバター専用複製メニューだけを加工
+- BUDDYWORKS Package原本を変更せず、PSEが生成するアバター専用複製メニューだけを加工
 - MA版・VRCF版のNDMF後検証へ、最上位配置・Dances移動・メニュー上限の検査を追加
-- MA版への再導入時、再生成されたAction Controllerの一時的なMissing参照をBuddyWorks未検出と誤判定する問題を修正
+- MA版への再導入時、再生成されたAction Controllerの一時的なMissing参照をBUDDYWORKS未検出と誤判定する問題を修正
 
 ## 1.1.2 - 2026-08-15
 
@@ -40,12 +40,12 @@
 ## 1.1.1 - 2026-08-14
 
 - `[MA]` 版と無関係なVRCFuryコンポーネントが同居するアバターで、未生成のPSE複製メニュー（null）をVRCFury参照と誤判定する問題を修正
-- BuddyWorks Poses Extension `[MA]` と、BuddyWorks Toolboxなどの別VRCFuryギミックを同時利用できるよう修正
-- VRChat SDK 3.10.4、Modular Avatar 1.18.1、NDMF 1.14.4、VRCFury 1.1417.0、BuddyWorks Poses Extension 7.2.1の混在環境でNDMF後検証PASS
+- BUDDYWORKS Poses Extension `[MA]` と、BUDDYWORKS Toolboxなどの別VRCFuryギミックを同時利用できるよう修正
+- VRChat SDK 3.10.4、Modular Avatar 1.18.1、NDMF 1.14.4、VRCFury 1.1417.0、BUDDYWORKS Poses Extension 7.2.1の混在環境でNDMF後検証PASS
 
 ## 1.1.0 - 2026-08-14
 
-- BuddyWorks Poses Extension同梱の `[MA]` 版を正式対応へ追加
+- BUDDYWORKS Poses Extension同梱の `[MA]` 版を正式対応へ追加
 - `[MA]` 版ではMA Menu Installerを生成メニューへOverrideし、`PSE/Command`をローカル専用パラメータとして追加
 - `[MA]` 版のAction Merge Animatorを、ジャンプ等で解除されない生成済みAction Controllerへ非破壊Override
 - `[VRCF]` 版と `[MA]` 版を自動判別し、両方の同時導入は競合として停止
@@ -56,7 +56,7 @@
 
 ## 1.0.2 - 2026-08-14
 
-- 対象アバターにはBuddyWorksの `[VRCF]` 版が必要であることをSetup画面とREADMEへ明記
+- 対象アバターにはBUDDYWORKSの `[VRCF]` 版が必要であることをSetup画面とREADMEへ明記
 - `[MA]` 版だけが対象に入っている場合、Setup画面へ「MA版のみ」と具体的に表示
 - 導入失敗時の共通メッセージを廃止し、生成Prefab、Animator、Modular Avatar、VRCFuryメニュー参照のどこで失敗したか表示
 - Unity 2022.3.22f1上で新規 `[VRCF]` Prefabから生成・導入する回帰テストを実施
@@ -73,11 +73,11 @@
 - 50個の上書きSave/Loadスロットを実装
 - `PE/Set` と `PE/Float` のみを保存する固定仕様v1を採用
 - Save/Load各7フォルダ、独自Nextなしのメニュー構成を実装
-- 保存値をローカル専用、Load先をBuddyWorks同期パラメータに設定
+- 保存値をローカル専用、Load先をBUDDYWORKS同期パラメータに設定
 - ジャンプ、着地、移動、Emoteによる自動解除を抑止
-- BuddyWorksの明示Resetによる解除を維持
+- BUDDYWORKSの明示Resetによる解除を維持
 - 対象アバター選択式のSetup画面を追加
-- BuddyWorks Package原本を変更しない非破壊生成方式を採用
+- BUDDYWORKS Package原本を変更しない非破壊生成方式を採用
 - VRCFury Base Locomotion重複の事前検出を追加
 - NDMF/VRCFuryビルド後検証を追加
 - 公開済みVRChatアバターで50枠＋上書き50枠、計100サイクルの実機検証を実施

@@ -58,8 +58,8 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                 "Packages/wtf.buddyworks.posesextension/Data/BUDDYWORKS Poses Extension [VRCF].prefab";
             if (AssetDatabase.LoadAssetAtPath<GameObject>(vrcFuryPrefab) == null)
                 throw new InvalidOperationException(
-                    "BuddyWorks Poses Extension [VRCF] prefab が見つかりません。" +
-                    "BuddyWorks Poses ExtensionをVCCから導入してください。");
+                    "BUDDYWORKS Poses Extension [VRCF] prefab が見つかりません。" +
+                    "BUDDYWORKS Poses ExtensionをVCCから導入してください。");
         }
 
         private static void GeneratePersistentBuddyController()
@@ -67,18 +67,18 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             var source = AssetDatabase.LoadAssetAtPath<AnimatorController>(
                 PoseSlotPosePersistence.BuddyActionSourcePath);
             if (source == null)
-                throw new InvalidOperationException("BuddyWorks Poses Extension Action controller was not found.");
+                throw new InvalidOperationException("BUDDYWORKS Poses Extension Action controller was not found.");
 
             DeleteIfPresent(PoseSlotPosePersistence.PersistentActionPath);
             if (!AssetDatabase.CopyAsset(PoseSlotPosePersistence.BuddyActionSourcePath,
                     PoseSlotPosePersistence.PersistentActionPath))
-                throw new InvalidOperationException("BuddyWorks Action controller could not be copied safely.");
+                throw new InvalidOperationException("BUDDYWORKS Action controller could not be copied safely.");
             AssetDatabase.ImportAsset(PoseSlotPosePersistence.PersistentActionPath,
                 ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
             var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(
                 PoseSlotPosePersistence.PersistentActionPath);
             if (controller == null)
-                throw new InvalidOperationException("Persistent BuddyWorks Action controller could not be loaded.");
+                throw new InvalidOperationException("Persistent BUDDYWORKS Action controller could not be loaded.");
 
             var patched = PoseSlotPosePersistence.RemoveAutomaticReleaseTransitions(controller);
             if (patched.GroundedTransitions != PoseSlotFixedSpecification.ExpectedGroundedReleaseTransitions ||
@@ -89,7 +89,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                 PoseSlotPosePersistence.CountAutomaticReleaseTransitions(controller) != 0 ||
                 PoseSlotPosePersistence.CountExplicitResetTransitions(controller) < 1)
                 throw new InvalidOperationException(
-                    $"BuddyWorks pose persistence patch did not match the verified structure. " +
+                    $"BUDDYWORKS pose persistence patch did not match the verified structure. " +
                     $"Grounded={patched.GroundedTransitions}, GoEmote={patched.GoEmoteTransitions}, " +
                     $"FavoriteShowcase={patched.FavoriteShowcaseTransitions}, " +
                     $"EyelookMigration={patched.EyelookMigrationTransitions}, " +
@@ -191,7 +191,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             {
                 var merge = root.AddComponent<ModularAvatarMergeAnimator>();
                 merge.animator = controller;
-                // BuddyWorks pose selection and its working Save/Load logic live in
+                // BUDDYWORKS pose selection and its working Save/Load logic live in
                 // the Action playable layer. Keep the shortcut driver in that same
                 // layer so PE/Set and PE/Float are read and written in the identical
                 // animator context.
@@ -241,8 +241,8 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             report.AppendLine("- Slot data: saved locally, not network synchronized");
             report.AppendLine("- Load target: existing network-synchronized `PE/Set` and `PE/Float`");
             report.AppendLine("- Standard Slot A/B/C adjustment fields are not copied");
-            report.AppendLine("- Active pose persists until the explicit BuddyWorks Reset command");
-            report.AppendLine("- BuddyWorks package controller remains untouched; a generated copy is used at build time");
+            report.AppendLine("- Active pose persists until the explicit BUDDYWORKS Reset command");
+            report.AppendLine("- BUDDYWORKS package controller remains untouched; a generated copy is used at build time");
             report.AppendLine("- Delete/history/A-B-C banks: none");
             report.AppendLine("- Animator layers: " + controller.layers.Length);
             report.AppendLine("- Root menu controls: " + menu.controls.Count);

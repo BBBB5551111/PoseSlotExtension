@@ -19,7 +19,7 @@ namespace PoseSlotExtensionMAStable.Editor
         protected override void Configure()
         {
             InPhase(BuildPhase.Resolving)
-                .Run("Keep BuddyWorks MA pose active until Reset", context =>
+                .Run("Keep BUDDYWORKS MA pose active until Reset", context =>
                     PoseSlotMACompatibility.Apply(context.AvatarRootObject));
         }
     }
@@ -34,25 +34,25 @@ namespace PoseSlotExtensionMAStable.Editor
                 PoseSlotPosePersistence.PersistentActionPath);
             if (persistentController == null)
                 throw new InvalidOperationException(
-                    "Persistent BuddyWorks Action controller was not generated. Run MA Stable Setup again.");
+                    "Persistent BUDDYWORKS Action controller was not generated. Run MA Stable Setup again.");
             if (PoseSlotPosePersistence.CountAutomaticReleaseTransitions(persistentController) != 0 ||
                 PoseSlotPosePersistence.CountExplicitResetTransitions(persistentController) < 1)
                 throw new InvalidOperationException(
-                    "Persistent BuddyWorks Action controller failed its pose-release safety check.");
+                    "Persistent BUDDYWORKS Action controller failed its pose-release safety check.");
 
             var buddyMerge = avatar.GetComponentsInChildren<ModularAvatarMergeAnimator>(true)
                 .FirstOrDefault(component => component != null &&
                     IsBuddyWorksActionController(component.animator));
             if (buddyMerge == null)
                 throw new InvalidOperationException(
-                    "BuddyWorks [MA] Merge Animator was not found on the build avatar.");
+                    "BUDDYWORKS [MA] Merge Animator was not found on the build avatar.");
 
             buddyMerge.animator = persistentController;
             EditorUtility.SetDirty(buddyMerge);
 
             if (!PoseSlotExtensionInstaller.HasModularAvatarMenuOverride(avatar))
                 throw new InvalidOperationException(
-                    "BuddyWorks [MA] Menu Installer is not bound to the generated Pose Slots menu. " +
+                    "BUDDYWORKS [MA] Menu Installer is not bound to the generated Pose Slots menu. " +
                     "Run Tools > Pose Slot Extension MA > Setup again. Diagnostic: " +
                     PoseSlotExtensionInstaller.DescribeModularAvatarMenuBinding(avatar));
             if (!PoseSlotExtensionInstaller.HasModularAvatarCommandParameter(avatar))
@@ -75,7 +75,7 @@ namespace PoseSlotExtensionMAStable.Editor
             return path == PoseSlotPosePersistence.BuddyActionSourcePath ||
                    path == PoseSlotPosePersistence.PersistentActionPath ||
                    path.EndsWith(
-                       "/Generated/Animator/BuddyWorks Poses Extension - Action [Persistent].controller",
+                       "/Generated/Animator/BUDDYWORKS Poses Extension - Action [Persistent].controller",
                        StringComparison.OrdinalIgnoreCase);
         }
     }

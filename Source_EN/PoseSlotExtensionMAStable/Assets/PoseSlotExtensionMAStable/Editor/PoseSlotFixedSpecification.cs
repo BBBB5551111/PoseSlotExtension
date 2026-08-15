@@ -6,7 +6,7 @@ namespace PoseSlotExtensionMAStable.Editor
 {
     /// <summary>
     /// Verified, intentionally fixed Pose Slot Extension contract.
-    /// Do not derive these values from BuddyWorks assets or scene state.
+    /// Do not derive these values from BUDDYWORKS assets or scene state.
     /// </summary>
     internal static class PoseSlotFixedSpecification
     {
@@ -15,7 +15,7 @@ namespace PoseSlotExtensionMAStable.Editor
         internal const int LoadCommandOffset = 100;
         internal const int ControlsPerRange = 7;
 
-        // Verified against the current BuddyWorks Action controller.  A mismatch
+        // Verified against the current BUDDYWORKS Action controller.  A mismatch
         // means the upstream package changed and the generated copy must not be
         // patched or uploaded without a new investigation.
         internal const int ExpectedGroundedReleaseTransitions = 2;

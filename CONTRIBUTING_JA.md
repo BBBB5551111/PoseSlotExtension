@@ -6,7 +6,7 @@
 
 - Unityのバージョン
 - VRChat SDK - Avatarsのバージョン
-- BuddyWorks Poses Extensionのバージョン
+- BUDDYWORKS Poses Extensionのバージョン
 - 使用している統合方式（Modular AvatarまたはVRCFury）
 - Modular Avatar、NDMF、VRCFuryの該当バージョン
 - Setup画面の判定結果
@@ -15,7 +15,7 @@
 
 ## 提案コードに含めないもの
 
-- BuddyWorksその他の購入・限定配布アセット
+- BUDDYWORKSその他の購入・限定配布アセット
 - VRChatアバター、テクスチャ、モデル、シーン
 - `Assets/PoseSlotExtension/Generated`以下の生成物
 - Blueprint ID、ログイン情報、APIキー、アクセストークン

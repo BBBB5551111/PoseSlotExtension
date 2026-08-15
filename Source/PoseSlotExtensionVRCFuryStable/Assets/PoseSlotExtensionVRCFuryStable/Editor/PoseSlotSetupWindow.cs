@@ -56,10 +56,10 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             EditorGUILayout.Space(8);
 
             EditorGUILayout.HelpBox(
-                "Save 01-50は現在のBuddyWorksポーズ（PE/Set + PE/Float）だけを上書き保存し、" +
+                "Save 01-50は現在のBUDDYWORKSポーズ（PE/Set + PE/Float）だけを上書き保存し、" +
                 "Load 01-50で復元します。保存値はローカル専用ですが、Load後のポーズ表示は" +
-                "BuddyWorks本来の同期経路を使うため他人にも見えます。ジャンプ等では解除されず、" +
-                "BuddyWorksのResetで解除されます。", MessageType.Info);
+                "BUDDYWORKS本来の同期経路を使うため他人にも見えます。ジャンプ等では解除されず、" +
+                "BUDDYWORKSのResetで解除されます。", MessageType.Info);
 
             EditorGUILayout.Space(8);
             EditorGUILayout.LabelField("対象アバター", EditorStyles.boldLabel);
@@ -81,7 +81,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                     else
                     {
                         lastResult = compatible.Length == 0
-                            ? "BuddyWorks Poses Extensionを持つアバターが見つかりません。"
+                            ? "BUDDYWORKS Poses Extensionを持つアバターが見つかりません。"
                             : "候補が複数あります。Hierarchyで対象を選択してください。";
                         lastResultType = MessageType.Warning;
                     }
@@ -103,12 +103,12 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                     value != null && value.name.IndexOf("BUDDYWORKS Poses Extension [MA]",
                         StringComparison.OrdinalIgnoreCase) >= 0);
             DrawStatus("Avatar Descriptor", target != null);
-            DrawStatus("BuddyWorks Poses Extension [VRCF]",
+            DrawStatus("BUDDYWORKS Poses Extension [VRCF]",
                 hasBuddyVrcFury || canAutoInstallBuddyVrcFury,
                 hasBuddyMaOnly ? "MA版のみ / VRCF版を自動導入できません" : "未検出");
             DrawStatus("Modular Avatar", typeof(ModularAvatarMergeAnimator) != null);
-            DrawStatus("BuddyWorks Package原本", AssetDatabase.LoadAssetAtPath<GameObject>(BuddyWorksPrefabPath) != null);
-            DrawStatus("BuddyWorks [VRCF] Prefab",
+            DrawStatus("BUDDYWORKS Package原本", AssetDatabase.LoadAssetAtPath<GameObject>(BuddyWorksPrefabPath) != null);
+            DrawStatus("BUDDYWORKS [VRCF] Prefab",
                 AssetDatabase.LoadAssetAtPath<GameObject>(BuddyWorksVrcFuryPrefabPath) != null);
             DrawStatus("生成済みアセット", AssetDatabase.LoadAssetAtPath<GameObject>(GeneratedPrefabPath) != null);
             DrawStatus("対象へ導入済み", PoseSlotExtensionInstaller.IsInstalled(target));
@@ -116,8 +116,8 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
 
             if (hasBuddyMaOnly && canAutoInstallBuddyVrcFury)
                 EditorGUILayout.HelpBox(
-                    "対象にはBuddyWorks [MA]版があります。セットアップ時に[VRCF]版を自動導入し、" +
-                    "Pose Slot Extensionは[VRCF]版だけへ接続します。BuddyWorks Package原本は変更しません。",
+                    "対象にはBUDDYWORKS [MA]版があります。セットアップ時に[VRCF]版を自動導入し、" +
+                    "Pose Slot Extensionは[VRCF]版だけへ接続します。BUDDYWORKS Package原本は変更しません。",
                     MessageType.Info);
 
             if (!hasSingleBaseLayer)
@@ -157,7 +157,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
 
             EditorGUILayout.Space(10);
             EditorGUILayout.HelpBox(
-                "安全性: BuddyWorksのPackage原本は編集しません。必要なAction Controllerとメニューを" +
+                "安全性: BUDDYWORKSのPackage原本は編集しません。必要なAction Controllerとメニューを" +
                 "Generated配下へ複製して加工します。旧PSEパラメータがある場合も、元のExpression " +
                 "Parametersを直接変更せずPrivateParametersへ複製して移行します。", MessageType.None);
 
@@ -181,7 +181,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                 if (!PoseSlotBuildValidator.Validate(target))
                     throw new InvalidOperationException("NDMFビルド後検証がFAILでした。アップロードしないでください。");
                 lastResult = "PASS: 50スロットを生成・導入し、NDMFビルド後のメニュー、Animator、" +
-                             "パラメータ、BuddyWorks連携を検証しました。アップロード可能です。";
+                             "パラメータ、BUDDYWORKS連携を検証しました。アップロード可能です。";
                 lastResultType = MessageType.Info;
             });
         }

@@ -122,8 +122,8 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             EnsureBuddyWorksVrcFuryInstalled(descriptor);
             if (!HasVrcFuryParameterList(descriptor.gameObject))
                 throw new InvalidOperationException(
-                    "Could not find the Parameters field on the BuddyWorks VRCFury Full Controller. " +
-                    "Reinstall a compatible BuddyWorks Poses Extension.");
+                    "Could not find the Parameters field on the BUDDYWORKS VRCFury Full Controller. " +
+                    "Reinstall a compatible BUDDYWORKS Poses Extension.");
 
             EnsureNoDuplicateVrcFuryBaseLayer(descriptor);
 
@@ -170,7 +170,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             {
                 Undo.DestroyObjectImmediate(instance);
                 throw new InvalidOperationException(
-                    "Could not replace the menu reference on BuddyWorks Poses Extension [VRCF]. " +
+                    "Could not replace the menu reference on BUDDYWORKS Poses Extension [VRCF]. " +
                     "The target avatar needs the [VRCF] variant, not the [MA] variant. " +
                     "Check that the [VRCF] variant is enabled in the Hierarchy.");
             }
@@ -208,7 +208,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             var compatible = FindCompatibleAvatars().ToArray();
             if (compatible.Length == 1) return compatible[0];
 
-            // A fresh avatar has no BuddyWorks VRCFury prefab yet. If only one avatar
+            // A fresh avatar has no BUDDYWORKS VRCFury prefab yet. If only one avatar
             // exists in loaded scenes, it is still an unambiguous install target.
             var sceneAvatars = Resources.FindObjectsOfTypeAll<VRCAvatarDescriptor>()
                 .Where(value => value != null && value.gameObject.scene.IsValid())
@@ -240,14 +240,14 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(BuddyWorksVrcFuryPrefabPath);
             if (prefab == null)
                 throw new InvalidOperationException(
-                    "BuddyWorks Poses Extension [VRCF] prefab was not found." +
-                    "Install BuddyWorks Poses Extension 7.2.1 through VCC.");
+                    "BUDDYWORKS Poses Extension [VRCF] prefab was not found." +
+                    "Install BUDDYWORKS Poses Extension 7.2.1 through VCC.");
 
             var instance = PrefabUtility.InstantiatePrefab(prefab, descriptor.gameObject.scene) as GameObject;
             if (instance == null)
-                throw new InvalidOperationException("Automatic installation of BuddyWorks Poses Extension [VRCF] failed.");
+                throw new InvalidOperationException("Automatic installation of BUDDYWORKS Poses Extension [VRCF] failed.");
 
-            Undo.RegisterCreatedObjectUndo(instance, "Install BuddyWorks Poses Extension [VRCF]");
+            Undo.RegisterCreatedObjectUndo(instance, "Install BUDDYWORKS Poses Extension [VRCF]");
             instance.name = prefab.name;
             instance.transform.SetParent(descriptor.transform, false);
             instance.transform.localPosition = Vector3.zero;
@@ -394,7 +394,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             if (Silent) return;
             EditorUtility.DisplayDialog("Pose Slot Extension",
                 "Select the target avatar (or one of its children) in the Hierarchy.\n" +
-                "If exactly one avatar has BuddyWorks Poses Extension it is selected automatically.", "OK");
+                "If exactly one avatar has BUDDYWORKS Poses Extension it is selected automatically.", "OK");
         }
 
         private static void MigrateLegacyPseParametersWithoutTouchingSource(VRCAvatarDescriptor descriptor)
@@ -536,7 +536,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                     return;
                 } while (iterator.Next(true));
             }
-            throw new InvalidOperationException("Could not detect the Parameters field on the BuddyWorks VRCFury Full Controller.");
+            throw new InvalidOperationException("Could not detect the Parameters field on the BUDDYWORKS VRCFury Full Controller.");
         }
 
         private static bool LooksLikePoseSlotParameterPath(string value)
@@ -619,7 +619,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             var clonedMore = CloneMenuAsset(originalMore, ClonedMoreMenuPath);
             var clonedMain = CloneMenuAsset(originalMain, ClonedMainMenuPath);
 
-            // The only feature added by the VRCFury stable line. The BuddyWorks
+            // The only feature added by the VRCFury stable line. The BUDDYWORKS
             // original is never edited; only the top-level Dances and Pose Slots
             // entries are swapped inside the duplicated menus.
             clonedMore.controls.RemoveAll(c => c.name == "Pose Slots" ||
@@ -628,7 +628,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             var dancesIndex = clonedMain.controls.FindIndex(c =>
                 c.type == VRCExpressionsMenu.Control.ControlType.SubMenu && c.subMenu == originalDances);
             if (dancesIndex < 0)
-                throw new InvalidOperationException("Could not find Dances in the BuddyWorks top-level menu.");
+                throw new InvalidOperationException("Could not find Dances in the BUDDYWORKS top-level menu.");
 
             var dancesControl = clonedMain.controls[dancesIndex];
             clonedMain.controls[dancesIndex] = new VRCExpressionsMenu.Control
@@ -679,7 +679,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             foreach (var component in avatar.GetComponentsInChildren<MonoBehaviour>(true))
             {
                 if (component == null || component.GetType().FullName.IndexOf("VRCFury", StringComparison.OrdinalIgnoreCase) < 0) continue;
-                // Other BuddyWorks/VRCFury products (Toolbox etc.) also live on the
+                // Other BUDDYWORKS/VRCFury products (Toolbox etc.) also live on the
                 // avatar as prefab instances. Only the component that actually holds
                 // a Pose Extension menu reference may be unpacked and patched.
                 if (!NeedsPoseSlotMenuPatch(component, originalRoot, clonedRoot)) continue;
@@ -792,7 +792,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
         // passes) but is silently dropped on scene save, and the next session
         // builds the unmodified package prefab. Editing therefore requires the
         // component to live outside any prefab instance. Unpack only when the
-        // outermost instance root is the BuddyWorks prefab itself; a component
+        // outermost instance root is the BUDDYWORKS prefab itself; a component
         // nested inside the avatar's own prefab must stop with an explicit error
         // because unpacking there would flatten the whole avatar.
         private static void EnsureVrcFuryComponentEditable(MonoBehaviour component)
@@ -803,9 +803,9 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             if (prefabRoot.name.IndexOf("BUDDYWORKS Poses Extension",
                     StringComparison.OrdinalIgnoreCase) < 0)
                 throw new InvalidOperationException(
-                    "The BuddyWorks VRCFury component is nested inside the avatar prefab. " +
+                    "The BUDDYWORKS VRCFury component is nested inside the avatar prefab. " +
                     "Menu and Parameters settings cannot be saved in this state. " +
-                    "Move BuddyWorks [VRCF] outside the avatar prefab (directly under the avatar in the scene) " +
+                    "Move BUDDYWORKS [VRCF] outside the avatar prefab (directly under the avatar in the scene) " +
                     "and run this again. Prefab root: " + prefabRoot.name);
             PrefabUtility.UnpackPrefabInstance(prefabRoot, PrefabUnpackMode.Completely,
                 InteractionMode.AutomatedAction);

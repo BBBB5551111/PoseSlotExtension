@@ -9,7 +9,7 @@ using VRC.SDK3.Avatars.Components;
 namespace PoseSlotExtensionVRCFuryStable.Editor
 {
     /// <summary>
-    /// Removes BuddyWorks' automatic pose-release routes from a generated copy of
+    /// Removes BUDDYWORKS' automatic pose-release routes from a generated copy of
     /// its Action controller. The package controller itself is never modified;
     /// explicit PE/Reset remains the sole route that clears an active pose.
     /// </summary>
@@ -18,7 +18,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
         internal const string BuddyActionSourcePath =
             "Packages/wtf.buddyworks.posesextension/Data/Poses Extension - Action.controller";
         internal const string PersistentActionPath =
-            "Assets/PoseSlotExtensionVRCFuryStable/Generated/Animator/BuddyWorks Poses Extension - Action [Persistent].controller";
+            "Assets/PoseSlotExtensionVRCFuryStable/Generated/Animator/BUDDYWORKS Poses Extension - Action [Persistent].controller";
 
         internal readonly struct PatchResult
         {

@@ -61,7 +61,7 @@ namespace PoseSlotExtensionMAStable.Editor
                     throw new InvalidOperationException("Pose Slots source menus were not found.");
                 if (!PoseSlotExtensionInstaller.HasBuddyWorksModularAvatar(descriptor.gameObject))
                     throw new InvalidOperationException(
-                        "Install BuddyWorks Poses Extension [MA]. This stable line supports the [MA] variant only.");
+                        "Install BUDDYWORKS Poses Extension [MA]. This stable line supports the [MA] variant only.");
 
                 // Validate only the fixed Modular Avatar path on an in-memory clone.
                 // A deep menu copy protects source assets from direct API use.
@@ -190,7 +190,7 @@ namespace PoseSlotExtensionMAStable.Editor
                 report.AppendLine("- Result: " + (LastResult ? "PASS" : "FAIL"));
                 report.AppendLine("- Fixed contract version: " + PoseSlotFixedSpecification.ContractVersion);
                 report.AppendLine("- Target avatar: " + descriptor.gameObject.name);
-                report.AppendLine("- BuddyWorks integration: ModularAvatar (fixed)");
+                report.AppendLine("- BUDDYWORKS integration: ModularAvatar (fixed)");
                 report.AppendLine("- Menu structure and limits: " + menuOk);
                 report.AppendLine("- Final built menu targets PSE/Command: " + finalMenuCommandBindingOk);
                 report.AppendLine("- Independent range folders/no Next: " + (!controls.Any(x => x.control.name == "Next")));
@@ -201,7 +201,7 @@ namespace PoseSlotExtensionMAStable.Editor
                 report.AppendLine("- Save/Load return transitions: " + returnTransitionsOk);
                 report.AppendLine("- Direct two-field Save/Load drivers: " + driverSemanticsOk);
                 report.AppendLine("- Local saved parameters: " + parametersOk);
-                report.AppendLine("- BuddyWorks menu binding: " + bindingOk);
+                report.AppendLine("- BUDDYWORKS menu binding: " + bindingOk);
                 report.AppendLine("- MA missing previous menu reference recovery: " + missingMaMenuRecoveryOk);
                 report.AppendLine("- PSE/Command is global/local-only: " + commandGlobalOk);
                 report.AppendLine("- Renamed VF*_PSE/Command absent: " + (!renamedCommandPresent));
@@ -209,10 +209,10 @@ namespace PoseSlotExtensionMAStable.Editor
                 report.AppendLine("- Random Pose writes public PE/Float: " + randomPoseWritesPublicFloat);
                 report.AppendLine("- Automatic pose-release transitions removed: " + posePersistenceOk);
                 report.AppendLine("- Remaining automatic pose-release transitions: " + automaticPoseReleaseTransitions);
-                report.AppendLine("- Explicit BuddyWorks Reset transitions retained: " + explicitPoseResetTransitions);
+                report.AppendLine("- Explicit BUDDYWORKS Reset transitions retained: " + explicitPoseResetTransitions);
                 report.AppendLine("- Renamed VF*_PE/Float absent from Action: " + (!renamedFloatInAction));
                 report.AppendLine("- Renamed VF*_PE/Float absent from expression parameters: " + (!renamedFloatParameterPresent));
-                report.AppendLine("- Pose Slots at BuddyWorks top level: " + poseSlotsAtTop);
+                report.AppendLine("- Pose Slots at BUDDYWORKS top level: " + poseSlotsAtTop);
                 report.AppendLine("- Dances moved under More: " + (dancesRemovedFromTop && dancesUnderMore));
                 report.AppendLine("- Pose Slots absent under More: " + poseSlotsRemovedFromMore);
                 report.AppendLine("- Integration menu limits: " + integrationMenuLimitsOk);

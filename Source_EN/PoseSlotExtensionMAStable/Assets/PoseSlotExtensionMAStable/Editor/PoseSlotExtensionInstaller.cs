@@ -107,7 +107,7 @@ namespace PoseSlotExtensionMAStable.Editor
             const BuddyWorksInstallMode installMode = BuddyWorksInstallMode.ModularAvatar;
             if (!HasBuddyWorksModularAvatar(descriptor.gameObject))
                 throw new InvalidOperationException(
-                    "BuddyWorks Poses Extension [MA] was not found on the target avatar. This stable line supports the [MA] variant only.");
+                    "BUDDYWORKS Poses Extension [MA] was not found on the target avatar. This stable line supports the [MA] variant only.");
 
             PoseSlotFixedSpecification.ValidateOrThrow();
             var existingObjects = descriptor.transform.Cast<Transform>()
@@ -167,7 +167,7 @@ namespace PoseSlotExtensionMAStable.Editor
             Selection.activeGameObject = instance;
             EditorGUIUtility.PingObject(instance);
             Debug.Log("[PoseSlotExtension] Installed under " + descriptor.gameObject.name +
-                      " using BuddyWorks MA Stable and saved scene: " +
+                      " using BUDDYWORKS MA Stable and saved scene: " +
                       descriptor.gameObject.scene.path);
             if (!Silent) EditorUtility.DisplayDialog("Pose Slot Extension",
                 descriptor.gameObject.name + " has been updated to the latest version and the scene was saved.", "OK");
@@ -331,7 +331,7 @@ namespace PoseSlotExtensionMAStable.Editor
             // The public package intentionally excludes Generated assets. If an
             // avatar still points to a previous PSE clone and that folder is
             // removed, menuToAppend becomes Missing/null. Recover the MA identity
-            // from the original BuddyWorks prefab instead of reporting it absent.
+            // from the original BUDDYWORKS prefab instead of reporting it absent.
             var prefabSource = PrefabUtility.GetCorrespondingObjectFromSource(component);
             if (prefabSource != null && prefabSource != component &&
                 ((originalRoot != null && prefabSource.menuToAppend == originalRoot) ||
@@ -344,7 +344,7 @@ namespace PoseSlotExtensionMAStable.Editor
                     StringComparison.OrdinalIgnoreCase))
                 return true;
 
-            // Also support an unpacked BuddyWorks MA prefab. Its runtime marker and
+            // Also support an unpacked BUDDYWORKS MA prefab. Its runtime marker and
             // MA Menu Installer are colocated; the VRCF variant has no MA installer.
             return component.GetComponents<MonoBehaviour>().Any(value =>
                 value != null && string.Equals(value.GetType().FullName,
@@ -379,7 +379,7 @@ namespace PoseSlotExtensionMAStable.Editor
             if (Silent) return;
             EditorUtility.DisplayDialog("Pose Slot Extension",
                 "Select the target avatar (or one of its children) in the Hierarchy.\n" +
-                "If exactly one avatar has BuddyWorks Poses Extension it is selected automatically.", "OK");
+                "If exactly one avatar has BUDDYWORKS Poses Extension it is selected automatically.", "OK");
         }
 
         private static void MigrateLegacyPseParametersWithoutTouchingSource(VRCAvatarDescriptor descriptor)
@@ -460,19 +460,19 @@ namespace PoseSlotExtensionMAStable.Editor
                     component, originalRoot, existingClone ?? clonedRoot));
             if (menuInstaller == null)
                 throw new InvalidOperationException(
-                    "Could not find the MA Menu Installer of BuddyWorks Poses Extension [MA].");
+                    "Could not find the MA Menu Installer of BUDDYWORKS Poses Extension [MA].");
 
             var persistentController = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(
                 PoseSlotPosePersistence.PersistentActionPath);
             if (persistentController == null)
                 throw new InvalidOperationException(
-                    "The BuddyWorks pose-persistence Action Controller has not been generated.");
+                    "The BUDDYWORKS pose-persistence Action Controller has not been generated.");
 
             var colocatedMerge = menuInstaller.GetComponent<ModularAvatarMergeAnimator>();
             // Generate recreates the private persistent controller. During an
             // idempotent reinstall, the already-installed Merge Animator can
             // therefore temporarily hold a missing/null controller reference.
-            // A Merge Animator colocated with the verified BuddyWorks menu
+            // A Merge Animator colocated with the verified BUDDYWORKS menu
             // installer is still the correct component and must be reconnected.
             var buddyMerge = colocatedMerge != null &&
                 (colocatedMerge.animator == null || IsBuddyWorksActionController(colocatedMerge.animator))
@@ -486,15 +486,15 @@ namespace PoseSlotExtensionMAStable.Editor
             }
             if (buddyMerge == null)
                 throw new InvalidOperationException(
-                    "Could not find the MA Merge Animator of BuddyWorks Poses Extension [MA].");
+                    "Could not find the MA Merge Animator of BUDDYWORKS Poses Extension [MA].");
 
-            Undo.RecordObject(menuInstaller, "Install Pose Slot Extension menu into BuddyWorks MA");
+            Undo.RecordObject(menuInstaller, "Install Pose Slot Extension menu into BUDDYWORKS MA");
             menuInstaller.menuToAppend = clonedRoot;
             EditorUtility.SetDirty(menuInstaller);
             if (PrefabUtility.IsPartOfPrefabInstance(menuInstaller))
                 PrefabUtility.RecordPrefabInstancePropertyModifications(menuInstaller);
 
-            Undo.RecordObject(buddyMerge, "Keep BuddyWorks pose active until Reset");
+            Undo.RecordObject(buddyMerge, "Keep BUDDYWORKS pose active until Reset");
             buddyMerge.animator = persistentController;
             buddyMerge.layerType = VRCAvatarDescriptor.AnimLayerType.Action;
             EditorUtility.SetDirty(buddyMerge);
@@ -509,7 +509,7 @@ namespace PoseSlotExtensionMAStable.Editor
             return path == PoseSlotPosePersistence.BuddyActionSourcePath ||
                    path == PoseSlotPosePersistence.PersistentActionPath ||
                    path.EndsWith(
-                       "/Generated/Animator/BuddyWorks Poses Extension - Action [Persistent].controller",
+                       "/Generated/Animator/BUDDYWORKS Poses Extension - Action [Persistent].controller",
                        StringComparison.OrdinalIgnoreCase);
         }
 
@@ -566,7 +566,7 @@ namespace PoseSlotExtensionMAStable.Editor
                     return;
                 } while (iterator.Next(true));
             }
-            throw new InvalidOperationException("Could not detect the Parameters field on the BuddyWorks VRCFury Full Controller.");
+            throw new InvalidOperationException("Could not detect the Parameters field on the BUDDYWORKS VRCFury Full Controller.");
         }
 
         private static bool ReferencesObject(SerializedObject serialized, UnityEngine.Object expected)
@@ -616,7 +616,7 @@ namespace PoseSlotExtensionMAStable.Editor
             var clonedMore = CloneMenuAsset(originalMore, ClonedMoreMenuPath);
             var clonedMain = CloneMenuAsset(originalMain, ClonedMainMenuPath);
 
-            // Keep BuddyWorks package assets read-only. In the generated private
+            // Keep BUDDYWORKS package assets read-only. In the generated private
             // copies only, exchange the top-level Dances slot with Pose Slots and
             // move the untouched Dances control under More. This preserves the
             // original icon/name/submenu reference and never increases either menu
@@ -627,7 +627,7 @@ namespace PoseSlotExtensionMAStable.Editor
             var dancesIndex = clonedMain.controls.FindIndex(c =>
                 c.type == VRCExpressionsMenu.Control.ControlType.SubMenu && c.subMenu == originalDances);
             if (dancesIndex < 0)
-                throw new InvalidOperationException("Could not find Dances in the BuddyWorks top-level menu.");
+                throw new InvalidOperationException("Could not find Dances in the BUDDYWORKS top-level menu.");
 
             var dancesControl = clonedMain.controls[dancesIndex];
             clonedMain.controls[dancesIndex] = new VRCExpressionsMenu.Control
@@ -674,7 +674,7 @@ namespace PoseSlotExtensionMAStable.Editor
         private static bool ReplaceVrcFuryRootMenuReference(GameObject avatar, VRCExpressionsMenu clonedRoot)
         {
             var originalRoot = AssetDatabase.LoadAssetAtPath<VRCExpressionsMenu>(PosesExtensionRootMenuPath);
-            // Property overrides are valid even when BuddyWorks is nested inside an
+            // Property overrides are valid even when BUDDYWORKS is nested inside an
             // avatar prefab. Keep both prefab instances intact and write an override
             // on the live scene component; unpacking a nested instance can target a
             // non-root object and either fail or destructively flatten the avatar.

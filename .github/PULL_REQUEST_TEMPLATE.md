@@ -11,6 +11,6 @@
 - [ ] Unityのコンパイルエラーがない
 - [ ] Setupの「生成・導入・検証」がPASSする
 - [ ] Modular Avatar版またはVRCFury版で確認した
-- [ ] BuddyWorksその他の第三者アセットを含めていない
+- [ ] BUDDYWORKSその他の第三者アセットを含めていない
 - [ ] `Generated`、Blueprint ID、認証情報を含めていない
 

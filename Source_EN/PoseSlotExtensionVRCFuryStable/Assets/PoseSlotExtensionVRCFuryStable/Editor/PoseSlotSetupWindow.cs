@@ -56,10 +56,10 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
             EditorGUILayout.Space(8);
 
             EditorGUILayout.HelpBox(
-                "Save 01-50 overwrites the selected slot with the current BuddyWorks pose (PE/Set + PE/Float) only, " +
+                "Save 01-50 overwrites the selected slot with the current BUDDYWORKS pose (PE/Set + PE/Float) only, " +
                 "and Load 01-50 restores it. Saved values are local only, but the pose shown after Load " +
-                "uses BuddyWorks' own sync path, so other players see it. Jumping does not clear the pose; " +
-                "only the BuddyWorks Reset does.", MessageType.Info);
+                "uses BUDDYWORKS' own sync path, so other players see it. Jumping does not clear the pose; " +
+                "only the BUDDYWORKS Reset does.", MessageType.Info);
 
             EditorGUILayout.Space(8);
             EditorGUILayout.LabelField("Target Avatar", EditorStyles.boldLabel);
@@ -81,7 +81,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                     else
                     {
                         lastResult = compatible.Length == 0
-                            ? "No avatar with BuddyWorks Poses Extension was found."
+                            ? "No avatar with BUDDYWORKS Poses Extension was found."
                             : "Multiple candidates found. Select the target in the Hierarchy.";
                         lastResultType = MessageType.Warning;
                     }
@@ -103,12 +103,12 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                     value != null && value.name.IndexOf("BUDDYWORKS Poses Extension [MA]",
                         StringComparison.OrdinalIgnoreCase) >= 0);
             DrawStatus("Avatar Descriptor", target != null);
-            DrawStatus("BuddyWorks Poses Extension [VRCF]",
+            DrawStatus("BUDDYWORKS Poses Extension [VRCF]",
                 hasBuddyVrcFury || canAutoInstallBuddyVrcFury,
                 hasBuddyMaOnly ? "[MA] only / cannot auto-install [VRCF]" : "not found");
             DrawStatus("Modular Avatar", typeof(ModularAvatarMergeAnimator) != null);
-            DrawStatus("BuddyWorks package original", AssetDatabase.LoadAssetAtPath<GameObject>(BuddyWorksPrefabPath) != null);
-            DrawStatus("BuddyWorks [VRCF] prefab",
+            DrawStatus("BUDDYWORKS package original", AssetDatabase.LoadAssetAtPath<GameObject>(BuddyWorksPrefabPath) != null);
+            DrawStatus("BUDDYWORKS [VRCF] prefab",
                 AssetDatabase.LoadAssetAtPath<GameObject>(BuddyWorksVrcFuryPrefabPath) != null);
             DrawStatus("Generated assets", AssetDatabase.LoadAssetAtPath<GameObject>(GeneratedPrefabPath) != null);
             DrawStatus("Installed on target", PoseSlotExtensionInstaller.IsInstalled(target));
@@ -116,8 +116,8 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
 
             if (hasBuddyMaOnly && canAutoInstallBuddyVrcFury)
                 EditorGUILayout.HelpBox(
-                    "The target has the BuddyWorks [MA] variant. Setup will auto-install the [VRCF] variant and " +
-                    "connect Pose Slot Extension to the [VRCF] variant only. The BuddyWorks package original is not modified.",
+                    "The target has the BUDDYWORKS [MA] variant. Setup will auto-install the [VRCF] variant and " +
+                    "connect Pose Slot Extension to the [VRCF] variant only. The BUDDYWORKS package original is not modified.",
                     MessageType.Info);
 
             if (!hasSingleBaseLayer)
@@ -157,7 +157,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
 
             EditorGUILayout.Space(10);
             EditorGUILayout.HelpBox(
-                "Safety: the BuddyWorks package original is never edited. The required Action Controller and menus are " +
+                "Safety: the BUDDYWORKS package original is never edited. The required Action Controller and menus are " +
                 "copied into the Generated folder and modified there. Existing Expression " +
                 "Parameters are never modified in place; they are copied into PrivateParameters when migration is needed.", MessageType.None);
 
@@ -181,7 +181,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                 if (!PoseSlotBuildValidator.Validate(target))
                     throw new InvalidOperationException("Post-NDMF build validation FAILED. Do not upload.");
                 lastResult = "PASS: 50 slots were generated and installed. The menu, Animator, " +
-                             "parameters and BuddyWorks integration were validated after the NDMF build. Ready to upload.";
+                             "parameters and BUDDYWORKS integration were validated after the NDMF build. Ready to upload.";
                 lastResultType = MessageType.Info;
             });
         }

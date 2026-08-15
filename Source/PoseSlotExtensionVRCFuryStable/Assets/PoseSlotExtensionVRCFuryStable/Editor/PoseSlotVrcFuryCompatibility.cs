@@ -18,10 +18,10 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
         protected override void Configure()
         {
             // NDMF's Resolving phase runs on the temporary build avatar before
-            // VRCFury's SDK preprocessor. This keeps the source BuddyWorks prefab,
+            // VRCFury's SDK preprocessor. This keeps the source BUDDYWORKS prefab,
             // controller and scene configuration untouched.
             InPhase(BuildPhase.Resolving)
-                .Run("Keep BuddyWorks pose shortcut parameters global", context =>
+                .Run("Keep BUDDYWORKS pose shortcut parameters global", context =>
                     PoseSlotVrcFuryCompatibility.Apply(context.AvatarRootObject));
         }
     }
@@ -39,23 +39,23 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                 .FirstOrDefault(IsBuddyWorksFullController);
             if (buddyController == null)
                 throw new InvalidOperationException(
-                    "Pose Slot Extension is installed, but the BuddyWorks VRCFury Full Controller was not found. " +
+                    "Pose Slot Extension is installed, but the BUDDYWORKS VRCFury Full Controller was not found. " +
                     "Build was stopped before upload.");
 
             var persistentController = AssetDatabase.LoadAssetAtPath<AnimatorController>(
                 PoseSlotPosePersistence.PersistentActionPath);
             if (persistentController == null)
                 throw new InvalidOperationException(
-                    "Persistent BuddyWorks Action controller was not generated. Run the Pose Slot generator first.");
+                    "Persistent BUDDYWORKS Action controller was not generated. Run the Pose Slot generator first.");
             if (PoseSlotPosePersistence.CountAutomaticReleaseTransitions(persistentController) != 0 ||
                 PoseSlotPosePersistence.CountExplicitResetTransitions(persistentController) < 1)
                 throw new InvalidOperationException(
-                    "Persistent BuddyWorks Action controller failed its pose-release safety check.");
+                    "Persistent BUDDYWORKS Action controller failed its pose-release safety check.");
 
             var serialized = new SerializedObject(buddyController);
             if (!ReplaceBuddyActionController(serialized, persistentController))
                 throw new InvalidOperationException(
-                    "BuddyWorks Action controller reference could not be replaced on the temporary build avatar.");
+                    "BUDDYWORKS Action controller reference could not be replaced on the temporary build avatar.");
             EnsureStringArrayContains(serialized, ".globalParams", PoseFloat);
             EnsureStringArrayContains(serialized, ".globalParams", Command);
             serialized.ApplyModifiedPropertiesWithoutUndo();
@@ -77,7 +77,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                 if (path != PoseSlotPosePersistence.BuddyActionSourcePath &&
                     path != PoseSlotPosePersistence.PersistentActionPath &&
                     !path.EndsWith(
-                        "/Generated/Animator/BuddyWorks Poses Extension - Action [Persistent].controller",
+                        "/Generated/Animator/BUDDYWORKS Poses Extension - Action [Persistent].controller",
                         StringComparison.OrdinalIgnoreCase)) continue;
                 property.objectReferenceValue = persistentController;
                 found = true;
@@ -104,7 +104,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                 return false;
 
             var serialized = new SerializedObject(component);
-            // These entries are part of BuddyWorks' own Full Controller and form a
+            // These entries are part of BUDDYWORKS' own Full Controller and form a
             // stable signature without depending on prefab names or VF### prefixes.
             return StringArrayContains(serialized, ".globalParams", "PE/Set") &&
                    StringArrayContains(serialized, ".globalParams", "PE/Favorite/*");
@@ -138,7 +138,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                 property.GetArrayElementAtIndex(index).stringValue = value;
                 return;
             } while (property.Next(true));
-            throw new InvalidOperationException("BuddyWorks VRCFury globalParams was not found.");
+            throw new InvalidOperationException("BUDDYWORKS VRCFury globalParams was not found.");
         }
 
         private static bool IsMatchingArray(SerializedProperty property, string propertySuffix) =>

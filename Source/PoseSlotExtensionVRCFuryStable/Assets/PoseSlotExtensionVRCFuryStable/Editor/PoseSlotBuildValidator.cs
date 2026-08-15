@@ -162,7 +162,7 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                 var poseSlotsAbsentUnderMore = !clonedMore.controls.Any(x =>
                     x.name == "Pose Slots" || x.subMenu == slotRoot);
                 // Walk the whole cloned integration graph, not only the three top
-                // menus; a nested BuddyWorks submenu over eight controls would
+                // menus; a nested BUDDYWORKS submenu over eight controls would
                 // still fail VRChat's menu validation at upload time.
                 var integrationMenus = CollectMenus(clonedRoot).ToList();
                 var integrationMenusWithinLimit = integrationMenus.All(x => x.controls.Count <= 8);
@@ -189,21 +189,21 @@ namespace PoseSlotExtensionVRCFuryStable.Editor
                 report.AppendLine("- Save/Load return transitions: " + returnTransitionsOk);
                 report.AppendLine("- Direct two-field Save/Load drivers: " + driverSemanticsOk);
                 report.AppendLine("- Local saved parameters: " + parametersOk);
-                report.AppendLine("- BuddyWorks menu binding: " + bindingOk);
+                report.AppendLine("- BUDDYWORKS menu binding: " + bindingOk);
                 report.AppendLine("- VRCFury PSE/Command is global: " + commandGlobalOk);
                 report.AppendLine("- Renamed VF*_PSE/Command absent: " + (!renamedCommandPresent));
                 report.AppendLine("- PE/Float globalized on temporary build clone: " + (compatibilityApplied && floatGlobalOnBuildClone));
                 report.AppendLine("- Random Pose writes public PE/Float: " + randomPoseWritesPublicFloat);
                 report.AppendLine("- Automatic pose-release transitions removed: " + posePersistenceOk);
                 report.AppendLine("- Remaining automatic pose-release transitions: " + automaticPoseReleaseTransitions);
-                report.AppendLine("- Explicit BuddyWorks Reset transitions retained: " + explicitPoseResetTransitions);
+                report.AppendLine("- Explicit BUDDYWORKS Reset transitions retained: " + explicitPoseResetTransitions);
                 report.AppendLine("- Renamed VF*_PE/Float absent from Action: " + (!renamedFloatInAction));
                 report.AppendLine("- Renamed VF*_PE/Float absent from expression parameters: " + (!renamedFloatParameterPresent));
-                report.AppendLine("- Pose Slots is at BuddyWorks top level: " + poseSlotsAtTop);
+                report.AppendLine("- Pose Slots is at BUDDYWORKS top level: " + poseSlotsAtTop);
                 report.AppendLine("- Dances moved from top level to More: " +
                                   (dancesRemovedFromTop && dancesMovedUnderMore));
                 report.AppendLine("- Pose Slots absent under More: " + poseSlotsAbsentUnderMore);
-                report.AppendLine("- BuddyWorks integration menus stay within 8 controls: " +
+                report.AppendLine("- BUDDYWORKS integration menus stay within 8 controls: " +
                                   integrationMenusWithinLimit);
                 report.AppendLine("- Maximum controls in one menu: " +
                     (integrationMenus.Count == 0 ? 0 : integrationMenus.Max(x => x.controls.Count)));
