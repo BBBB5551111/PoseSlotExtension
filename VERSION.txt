@@ -1,0 +1,2 @@
+VRCFury: 1.0.4-vrcfury-stable
+MA: 1.0.0-ma-stable

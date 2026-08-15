@@ -1,0 +1,46 @@
+# Unity generated directories
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# IDE generated files
+.vs/
+.idea/
+.vscode/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Pose Slot Extension per-avatar output
+/Assets/PoseSlotExtension/Generated/
+/Assets/PoseSlotExtension/Generated.meta
+
+# Distribution files belong in GitHub Releases
+*.unitypackage
+*.zip
+
+# Local logs and credentials
+*.log
+.env
+.env.*
+
