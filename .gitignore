@@ -32,8 +32,10 @@ Thumbs.db
 Desktop.ini
 
 # Pose Slot Extension per-avatar output
-/Assets/PoseSlotExtension/Generated/
-/Assets/PoseSlotExtension/Generated.meta
+/Source/com.poseslotextension.ma/Generated/
+/Source/com.poseslotextension.vrcfury/Generated/
+/Source_EN/com.poseslotextension.ma/Generated/
+/Source_EN/com.poseslotextension.vrcfury/Generated/
 
 # Distribution files belong in GitHub Releases
 *.unitypackage
@@ -43,4 +45,3 @@ Desktop.ini
 *.log
 .env
 .env.*
-

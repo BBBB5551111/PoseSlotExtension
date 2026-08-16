@@ -1,0 +1,22 @@
+{
+  "name": "PoseSlotExtension.VRCFury.Editor",
+  "rootNamespace": "",
+  "references": [
+    "VRC.SDK3A",
+    "VRC.SDKBase",
+    "nadena.dev.ndmf",
+    "nadena.dev.ndmf.runtime",
+    "nadena.dev.modular-avatar.core"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
