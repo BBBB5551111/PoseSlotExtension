@@ -17,9 +17,8 @@
 
 - BUDDYWORKSその他の購入・限定配布アセット
 - VRChatアバター、テクスチャ、モデル、シーン
-- `Assets/PoseSlotExtension/Generated`以下の生成物
+- `Packages/com.poseslotextension.ma/Generated`および`Packages/com.poseslotextension.vrcfury/Generated`以下の生成物
 - Blueprint ID、ログイン情報、APIキー、アクセストークン
 - 第三者の規約で再配布が許可されていないファイル
 
 Pull Requestとして提供された変更の採用、改変、配布については、本リポジトリの利用規約および個別の合意が適用されます。
-

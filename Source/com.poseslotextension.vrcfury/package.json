@@ -1,0 +1,11 @@
+{
+  "name": "com.poseslotextension.vrcfury",
+  "displayName": "Pose Slot Extension (VRCFury)",
+  "version": "2.3.0",
+  "unity": "2022.3",
+  "description": "BUDDYWORKS Poses Extension 向けの非公式ADD-ON。現在選択中のポーズを50スロットへ保存し、後から呼び出します。",
+  "author": {
+    "name": "SAGAT",
+    "url": "https://github.com/BBBB5551111/PoseSlotExtension"
+  }
+}

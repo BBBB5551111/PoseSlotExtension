@@ -1,0 +1,11 @@
+{
+  "name": "com.poseslotextension.vrcfury",
+  "displayName": "Pose Slot Extension (VRCFury)",
+  "version": "2.3.0",
+  "unity": "2022.3",
+  "description": "Unofficial add-on for BUDDYWORKS Poses Extension: save the current pose into 50 slots and load it back later.",
+  "author": {
+    "name": "SAGAT",
+    "url": "https://github.com/BBBB5551111/PoseSlotExtension"
+  }
+}
